@@ -19,6 +19,6 @@ public class Procesor {
         this.rychlost = rychlost;
     }
     public String toString() {
-        return "Procesor: " + vyrobce + ", rychlost: " + rychlost + " Hz";
+        return "vyrobce: " + vyrobce + ", rychlost: " + rychlost + " Hz";
     }
 }

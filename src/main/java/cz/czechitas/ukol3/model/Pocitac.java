@@ -56,6 +56,35 @@ public class Pocitac {
         jeZapnuty = false;
         System.out.println("Počítač se vypnul.");
     }
+
+    public void vytvorSouborOVelikosti(long velikost) {
+        if (!jeZapnuty) {
+            System.err.println("Chyba: Nelze vytvořit soubor, počítač není zapnutý.");
+            return;
+        }
+        long novaKapacita = pevnyDisk.getVyuziteMisto() + velikost;
+        if (novaKapacita > pevnyDisk.getKapacita()) {
+            System.err.println("Chyba: Nelze vytvořit soubor, nedostatek místa na disku.");
+            return;
+        }
+        pevnyDisk.setVyuziteMisto(novaKapacita);
+        System.out.println("Soubor o velikosti " + velikost + " byl úspěšně vytvořen.");
+    }
+
+    public void vymazSouboryOVelikosti(long velikost) {
+        if (!jeZapnuty) {
+            System.err.println("Chyba: Nelze vymazat soubory, počítač není zapnutý.");
+            return;
+        }
+        long novaKapacita = pevnyDisk.getVyuziteMisto() - velikost;
+        if (novaKapacita < 0) {
+            System.err.println("Chyba: Nelze vymazat soubory, není dostatek souborů na disku.");
+            return;
+        }
+        pevnyDisk.setVyuziteMisto(novaKapacita);
+        System.out.println("Soubory o celkové velikosti " + velikost + " byly úspěšně smazány.");
+    }
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Počítač je ").append(jeZapnuty ? "zapnutý" : "vypnutý").append(".\n");
